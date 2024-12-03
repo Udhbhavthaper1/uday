@@ -1,22 +1,43 @@
 // app/create/page.tsx
-"use client";
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { createItem } from '../../utils/crud';
+"use client"; 
+// Indicates this file is a client-side component.
 
-export default function CreatePage() {
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
-  const router = useRouter();
+import { useState } from 'react'; 
+// Import useState for managing state.
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    createItem({ name, description });
-    router.push('/');
+import { useRouter } from 'next/navigation'; 
+// Import useRouter for navigation.
+
+import { createItem } from '../../utils/crud'; 
+// Import the createItem function.
+
+export default function CreatePage() { 
+  // Define the CreatePage component.
+
+  const [name, setName] = useState(''); 
+  // State for the name input field.
+
+  const [description, setDescription] = useState(''); 
+  // State for the description input field.
+
+  const router = useRouter(); 
+  // Get the router instance.
+
+  const handleSubmit = (e: React.FormEvent) => { 
+    // Handle form submission.
+    e.preventDefault(); 
+    // Prevent page refresh.
+
+    createItem({ name, description }); 
+    // Create a new item.
+
+    router.push('/'); 
+    // Redirect to the home page.
   };
 
   return (
+    // JSX structure of the component.
     <div>
       <h1>Create New Item</h1>
       <form onSubmit={handleSubmit}>
